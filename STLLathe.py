@@ -4,7 +4,7 @@ import numpy as np
 import copy
 from mpl_toolkits import mplot3d
 
-def STLmaker():
+def create():
         return STLLathe()
 
 class STLLathe():
@@ -114,7 +114,7 @@ class STLLathe():
         scale = your_mesh.points.flatten('C')
         axes.auto_scale_xyz(scale, scale, scale)
 
-def Edgemaker():
+def createTurtleEdge():
     return TurtleEdge()
 
 class TurtleEdge():
@@ -124,8 +124,13 @@ class TurtleEdge():
         self.dirx=1.0
         self.diry=0.0
 
-    def moveTo(self, p ):
-        self.edge.append(p)
+    def moveToA(self, px, py ):
+        if len(self.edge)==0:
+                self.edge.append((0.0,0.0))
+        lastp = self.edge[-1]
+        self.dirx=lastp[0]-px
+        self.diry=lastp[1]-py
+        self.edge.append((px, py))
 
     def moveToR( self, rx, ry ):
         if len(self.edge)==0:
